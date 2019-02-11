@@ -1,6 +1,5 @@
-DOCKER_IMAGE ?= onelogin/haproxy-tls-client-auth
+DOCKER_IMAGE ?= haproxy-tls-client-auth
 DOCKER_CONTAINER ?= haproxy-tls-client-auth
-REGISTRY ?= docker.onlgn.net
 # The command below will extract the branch name and replace slashes for underscores so that
 # it can be used as a valid docker image tag.
 BRANCH_NAME ?= `git log --pretty=format:'%h' -n 1`
@@ -9,9 +8,6 @@ ENV_FILE ?= .env
 
 
 PHONY: login image
-
-login:
-	$(HIDE)docker login $(REGISTRY) -u="$(DOCKER_USERNAME)" -p="$(DOCKER_PASSWORD)"
 
 image:
 	$(HIDE)docker build -f Dockerfile -t $(DOCKER_IMAGE) $(PWD)
