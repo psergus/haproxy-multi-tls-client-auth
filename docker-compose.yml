@@ -1,0 +1,12 @@
+version: '3'
+services:
+  proxy:
+    container_name: haproxy-tls-client-auth
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      - "443:443"
+    volumes:
+      - ./lib:/etc/haproxy
